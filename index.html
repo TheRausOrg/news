@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Welcome – News & Prayer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    function getCookie(name) {
+      return document.cookie
+        .split('; ')
+        .find(row => row.startsWith(name + '='))
+        ?.split('=')[1];
+    }
+
+    // Only redirect when landing on / (do not override explicit URLs)
+    const lang = getCookie('lang');
+    if (lang) {
+      window.location.replace('/' + lang + '/');
+    }
+
+    function choose(lang) {
+      document.cookie = 'lang=' + lang + '; path=/; max-age=31536000';
+      window.location.href = '/' + lang + '/';
+    }
+  </script>
+</head>
+
+<body>
+  <main class="wrap">
+    <h1>Welcome</h1>
+    <p class="lead">
+      We share news, prayer letters and updates with friends and supporters
+      in different languages and contexts.
+    </p>
+    <p>Please choose what fits you best. You can change this at any time.</p>
+
+    <section>
+      <h2>Deutsch</h2>
+      <p class="muted">Gemeinsame Inhalte oder region-spezifische Hinweise.</p>
+      <p>
+        <button class="choice" onclick="choose('de')">Deutsch – allgemein</button>
+        <button class="choice" onclick="choose('de-CH')">Deutsch – Schweiz</button>
+        <button class="choice" onclick="choose('de-DE')">Deutsch – Deutschland</button>
+      </p>
+    </section>
+
+    <section>
+      <h2>English</h2>
+      <p class="muted">Shared content or regional wording where it matters.</p>
+      <p>
+        <button class="choice" onclick="choose('en')">English – international</button>
+        <button class="choice" onclick="choose('en-GB')">English – United Kingdom</button>
+        <button class="choice" onclick="choose('en-US')">English – United States</button>
+      </p>
+    </section>
+
+    <hr>
+    <p class="muted">
+      This site uses one simple preference cookie to remember your choice. No tracking.
+    </p>
+
+    <noscript>
+      <p>
+        JavaScript is disabled. Please visit:
+        <a href="/en/">/en/</a> · <a href="/de/">/de/</a>
+      </p>
+    </noscript>
+  </main>
+</body>
+</html>

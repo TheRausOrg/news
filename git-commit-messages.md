@@ -1,0 +1,5 @@
+- news: initialise language + region structure
+- news: add first prayer letter
+- news(de): adjust wording for CH/DE
+- news(en): adjust wording for GB/US
+- style: improve readability
