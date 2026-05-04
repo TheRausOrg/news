@@ -2,48 +2,39 @@
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
-  <title>News & Prayer – US</title>
+  <title>News & Prayer – en-US</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="News, prayer letters and ways to stay connected.">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
+
 <body>
   <main class="wrap">
     <nav>
-      <a href="/">Change language</a>
+      <a href="/?choose-language=1">Change language</a> ·
+      <a href="/?choose-language=1"
+         onclick="document.cookie='lang=; path=/; max-age=0'">
+         Reset preference
+      </a> ·
       <a href="https://theraus.org/">Main site</a>
     </nav>
 
-    <h1>News & Prayer – US</h1>
-    <p class="lead">Welcome! This version uses US wording where it helps clarity.</p>
+    <h1>News & Prayer</h1>
 
-    <section>
-      <h2>Contact & updates (US)</h2>
-      <p>
-        Replace the placeholders below with your real contact methods.
-      </p>
-      <ul>
-        <li><strong>Email:</strong> <a href="mailto:news@theraus.org">news@theraus.org</a></li>
-        <li><strong>WhatsApp:</strong> <a href="https://wa.me/XXXXXXXXXX">wa.me/…</a></li>
-        <li><strong>Signal:</strong> <a href="https://signal.me/#p/XXXXXXXXXX">signal.me/…</a></li>
-        <li><strong>Threema:</strong> Threema ID: <code>XXXXXXX</code></li>
-        <li><strong>Instagram:</strong> <a href="https://instagram.com/yourprofile">@yourprofile</a></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Latest update</h2>
-      <p><em>(Add your newest prayer letter here.)</em></p>
-    </section>
+    <p class="lead">
+      This is the en-US page.
+    </p>
 
     <footer class="muted">
       <hr>
-      <p>This is a personal communication page for friends and supporters of Urs & Kerstin Rau.</p>
+      <p>
+        This is a personal communication page for friends and supporters
+        of Urs &amp; Kerstin Rau.
+      </p>
     </footer>
   </main>
 
   <script>
-    // Persist the visitor's current locale choice
+    // persist selection
     document.cookie = 'lang=en-US; path=/; max-age=31536000';
   </script>
 </body>

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="/assets/css/style.css">
+
   <script>
     function getCookie(name) {
       return document.cookie
@@ -14,13 +15,24 @@
         ?.split('=')[1];
     }
 
-    // Only redirect when landing on / (do not override explicit URLs)
+    // Show chooser unless user already picked a language
+    // OR explicitly requested the chooser
+    const params = new URLSearchParams(window.location.search);
+    const forceChooser = params.has('choose-language');
+
     const lang = getCookie('lang');
-    if (lang) {
+    if (lang && !forceChooser) {
       window.location.replace('/' + lang + '/');
     }
 
     function choose(lang) {
+      // Clear preference
+      if (!lang) {
+        document.cookie = 'lang=; path=/; max-age=0';
+        window.location.replace('/?choose-language=1');
+        return;
+      }
+
       document.cookie = 'lang=' + lang + '; path=/; max-age=31536000';
       window.location.href = '/' + lang + '/';
     }
@@ -30,41 +42,47 @@
 <body>
   <main class="wrap">
     <h1>Welcome</h1>
+
     <p class="lead">
       We share news, prayer letters and updates with friends and supporters
       in different languages and contexts.
     </p>
+
     <p>Please choose what fits you best. You can change this at any time.</p>
 
     <section>
       <h2>Deutsch</h2>
-      <p class="muted">Gemeinsame Inhalte oder region-spezifische Hinweise.</p>
-      <p>
-        <button class="choice" onclick="choose('de')">Deutsch – allgemein</button>
-        <button class="choice" onclick="choose('de-CH')">Deutsch – Schweiz</button>
-        <button class="choice" onclick="choose('de-DE')">Deutsch – Deutschland</button>
-      </p>
+      <button class="choice" onclick="choose('de')">Deutsch – allgemein</button>
+      <button class="choice" onclick="choose('de-CH')">Deutsch – Schweiz</button>
+      <button class="choice" onclick="choose('de-DE')">Deutsch – Deutschland</button>
     </section>
 
     <section>
       <h2>English</h2>
-      <p class="muted">Shared content or regional wording where it matters.</p>
-      <p>
-        <button class="choice" onclick="choose('en')">English – international</button>
-        <button class="choice" onclick="choose('en-GB')">English – United Kingdom</button>
-        <button class="choice" onclick="choose('en-US')">English – United States</button>
-      </p>
+      <button class="choice" onclick="choose('en')">English – international</button>
+      <button class="choice" onclick="choose('en-GB')">English – United Kingdom</button>
+      <button class="choice" onclick="choose('en-US')">English – United States</button>
+    </section>
+
+    <section>
+      <button class="choice" onclick="choose('')">Clear saved choice</button>
     </section>
 
     <hr>
+
     <p class="muted">
-      This site uses one simple preference cookie to remember your choice. No tracking.
+      Preference is stored with a simple functional cookie.
+      To reopen this chooser later, visit:
+      <code>/?choose-language=1</code>
     </p>
 
     <noscript>
       <p>
-        JavaScript is disabled. Please visit:
-        <a href="/en/">/en/</a> · <a href="/de/">/de/</a>
+        JavaScript is disabled.
+        Visit:
+        <a href="/en/">/en/</a> ·
+        <a href="/de/">/de/</a> ·
+        <a href="/?choose-language=1">Chooser</a>
       </p>
     </noscript>
   </main>
